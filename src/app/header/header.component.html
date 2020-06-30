@@ -1,0 +1,29 @@
+<nav class="navbar navbar-light navbar-expand-md bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggler" (click)="collapsed = !collapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="navbar-brand ml-2">Recipe Book</a>
+        </div>
+        <div class="navbar-collapse row" [class.collapse]="collapsed">
+            <ul class="navbar-nav col-6">
+                    <a class="nav-item nav-link ml-3" href="#">Recipes</a>
+                    <a class="nav-item nav-link ml-3" href="#">Shopping List</a>
+            </ul>
+            <ul class="nav  navbar-light navbar-nav mr-4 ml-auto">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Manage</a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item">
+                            <a href="#">Save Data</a>
+                        </li>
+                        <li class="dropdown-item">
+                            <a href="#">Fetch Data</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
