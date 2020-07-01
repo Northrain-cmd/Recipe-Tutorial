@@ -8,19 +8,15 @@
         </div>
         <div class="navbar-collapse row" [class.collapse]="collapsed">
             <ul class="navbar-nav col-6">
-                    <a class="nav-item nav-link ml-3" href="#">Recipes</a>
-                    <a class="nav-item nav-link ml-3" href="#">Shopping List</a>
+                    <a (click)="onClick($event)" class="nav-item nav-link ml-3" href="#">Recipes</a>
+                    <a (click)="onClick($event)" class="nav-item nav-link ml-3" href="#">Shopping List</a>
             </ul>
-            <ul class="nav  navbar-light navbar-nav mr-4 ml-auto">
+            <ul class="nav  navbar-light navbar-nav mr-5 ml-auto">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Manage</a>
+                    <a href="#" class="nav-link dropdown-toggle" appDropdown>Manage</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item">
-                            <a href="#">Save Data</a>
-                        </li>
-                        <li class="dropdown-item">
-                            <a href="#">Fetch Data</a>
-                        </li>
+                            <a class="dropdown-item" href="#">Save</a>
+                            <a class="dropdown-item" href="#">Fetch</a>
                     </ul>
                 </li>
             </ul>
