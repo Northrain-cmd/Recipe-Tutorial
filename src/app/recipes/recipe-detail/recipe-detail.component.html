@@ -11,9 +11,9 @@
         <div class="btn-group">
             <button appDropdown class="btn btn-primary mb-2 dropdown-toggle">Manage recipe <span class="caret"></span></button>
             <ul class="dropdown-menu">
-              <a class="dropdown-item" href="#" (click)="onAddToCart()">To cart</a>
-              <a class="dropdown-item" href="#">Edit</a>
-              <a class="dropdown-item" href="#">Delete</a>
+              <a class="dropdown-item" (click)="onAddToCart()">To cart</a>
+              <a [routerLink]="['edit']" class="dropdown-item" >Edit</a>
+              <a class="dropdown-item">Delete</a>
             </ul>
         </div>
     </div>

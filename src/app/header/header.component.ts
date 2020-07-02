@@ -7,12 +7,8 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Output() linkClicked = new EventEmitter<string>();
   collapsed = true;
 
-  onClick(event) {
-      this.linkClicked.emit(event.target.textContent);
-  }  
   constructor() { }
   ngOnInit(): void {
   }

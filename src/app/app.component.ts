@@ -6,13 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  feature: string = "Recipes";
-  onLinkClicked(linkText) {
-    if(linkText === 'Recipes') {
-      this.feature = linkText;
-    }  else {
-      this.feature = 'List';
-    }
-  }
   title = 'Recipe-Tutorial';
 }
