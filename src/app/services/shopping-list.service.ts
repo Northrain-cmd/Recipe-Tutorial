@@ -6,10 +6,26 @@ export class ShoppingListService {
     new Ingredient('Oranges',2)
   ];
   ingredientsChanged = new Subject<Ingredient[]>();
+  ingredientSelected = new Subject<number>();
   constructor() { }
 
   getIngredients() {
     return [...this.ingredients]
+  }
+  selectIngredient(index) {
+     this.ingredientSelected.next(index)
+  }
+  getIngredient(index) {
+    return this.ingredients[index]
+  }
+  updateIngredient(object: {index: number ,name: string, amount: number}) {
+    const updatedIngredient = new Ingredient(object.name, object.amount);
+    this.ingredients.splice(object.index,1,updatedIngredient);
+    this.ingredientsChanged.next([...this.ingredients]);
+  }
+  deleteIngredient(index) {
+    this.ingredients.splice(index,1);
+    this.ingredientsChanged.next([...this.ingredients]);
   }
   addToCart(ingredients: Ingredient[]) {
     ingredients.forEach(ingredient => {
