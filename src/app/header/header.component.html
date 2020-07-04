@@ -29,8 +29,8 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" appDropdown>Manage</a>
           <ul class="dropdown-menu">
-            <a class="dropdown-item">Save</a>
-            <a class="dropdown-item">Fetch</a>
+            <a (click)="onSaveData()" class="dropdown-item">Save</a>
+            <a (click)="onFetch()" class="dropdown-item">Fetch</a>
           </ul>
         </li>
       </ul>
