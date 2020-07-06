@@ -12,7 +12,7 @@
     </div>
     <div class="navbar-collapse row" [class.collapse]="collapsed">
       <ul class="navbar-nav col-6">
-        <a
+        <a *ngIf="isLogged"
           routerLink="recipes"
           routerLinkActive="active"
           class="nav-item nav-link ml-3"
@@ -24,7 +24,7 @@
           class="nav-item nav-link ml-3"
           >Shopping List</a
         >
-        <a
+        <a *ngIf="!isLogged"
           routerLink="auth"
           routerLinkActive="active"
           class="nav-item nav-link ml-3"
@@ -32,7 +32,10 @@
         >
       </ul>
       <ul class="nav navbar-light navbar-nav mr-5 ml-auto">
-        <li class="nav-item dropdown">
+        <li *ngIf="isLogged" class="nav-item dropdown">
+          <a class="nav-link">Logout</a>
+        </li>
+        <li *ngIf="isLogged" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" appDropdown>Manage</a>
           <ul class="dropdown-menu">
             <a (click)="onSaveData()" class="dropdown-item">Save</a>
