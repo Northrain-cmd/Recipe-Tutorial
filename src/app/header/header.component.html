@@ -33,7 +33,7 @@
       </ul>
       <ul class="nav navbar-light navbar-nav mr-5 ml-auto">
         <li *ngIf="isLogged" class="nav-item dropdown">
-          <a class="nav-link">Logout</a>
+          <a (click)="onLogout()" class="nav-link">Logout</a>
         </li>
         <li *ngIf="isLogged" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" appDropdown>Manage</a>

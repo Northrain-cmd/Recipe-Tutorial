@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject, BehaviorSubject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 export interface AuthResponseData {
   kind: string;
@@ -19,6 +20,7 @@ export interface AuthResponseData {
 })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  private timer: any;
   logIn(email: string, password: string) {
     return this.http
       .post<AuthResponseData>(
@@ -50,6 +52,36 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    this.autoLogout(expiresIn * 1000);
+    localStorage.setItem('userData', JSON.stringify(user));
+  }
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if(! userData) {
+      return
+    } else {
+     const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpires));
+     console.log(loadedUser);
+      if(loadedUser.token) {
+        this.user.next(loadedUser);
+        const timerCount: number =  new Date(userData._tokenExpires).getTime() - new Date().getTime();
+        this.autoLogout(timerCount);
+      }
+    }
+  }
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('userData');
+    if(this.timer) {
+      clearTimeout(this.timer);
+    }
+    this.timer = null;
+  }
+  autoLogout(expirationDuration: number) {
+   this.timer = setTimeout(() => {
+      this.logout()
+    } , expirationDuration)
   }
   signUp(email: string, password: string) {
     return this.http
@@ -90,5 +122,5 @@ export class AuthService {
     }
     return throwError(errorMessage);
   }
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 }
