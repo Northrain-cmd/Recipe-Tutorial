@@ -1,8 +1,6 @@
 <div class="row">
   <div class="col-12 col-md-8 col-lg-6 offset-lg-3 offset-md-2">
-      <div *ngIf="error" class="alert alert-danger">
-          <p class="h6">{{error}}</p>
-      </div>
+     <app-alert (close)="onHandleError()" [message]="error" *ngIf="error"></app-alert>
       <ng-template #spinner  class="text-center"  >
           <div class="d-flex justify-content-center">
             <app-loading-spinner class="text-center" ></app-loading-spinner>

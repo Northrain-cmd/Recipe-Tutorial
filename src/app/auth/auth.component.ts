@@ -37,6 +37,9 @@ export class AuthComponent implements OnInit {
      }) 
     this.form.reset(); 
   }
+  onHandleError() {
+     this.error = null;
+  }
   constructor(private auth: AuthService, private router: Router) {
 
    }
