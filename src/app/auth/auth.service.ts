@@ -61,7 +61,6 @@ export class AuthService {
       return
     } else {
      const loadedUser = new User(userData.email, userData.id, userData._token, new Date(userData._tokenExpires));
-     console.log(loadedUser);
       if(loadedUser.token) {
         this.user.next(loadedUser);
         const timerCount: number =  new Date(userData._tokenExpires).getTime() - new Date().getTime();
